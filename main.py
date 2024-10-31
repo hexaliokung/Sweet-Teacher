@@ -4,7 +4,7 @@ from os import path
 # import file
 from sprites import *
 from settings import *
-from tilemap1 import *
+from tilemap import *
 
 # ------------------------------------ สร้าง class Game ขึ้น ------------------------------------
 class Game:
@@ -44,7 +44,10 @@ class Game:
     def load_data(self):
         game_folder = path.dirname(__file__)
         img_folder = path.join(game_folder, "img")
-        self.map = Map(path.join(game_folder, "map2.txt"))
+        map_folder = path.join(game_folder, "maps")
+        self.map = Tiledmap(path.join(map_folder, "level1.tmx"))
+        self.map_img = self.map.make_map()
+        self.map_rect = self.map_img.get_rect()
         self.player_img = pg.image.load(path.join(img_folder, PLAYER_IMG)).convert_alpha()
     # method วาดตารางกริด
     def draw_grid(self):
@@ -55,7 +58,8 @@ class Game:
 
     # method แสดงผล
     def draw(self):
-        self.scr_display.fill("DARKGREY")
+        # self.scr_display.fill("DARKGREY")
+        self.scr_display.blit(self.map_img, self.camera.apply_rect(self.map_rect))
         self.draw_grid()
         for sprite in self.all_sprites:
             self.scr_display.blit(sprite.image, self.camera.apply(sprite))
@@ -99,13 +103,13 @@ class Game:
         self.all_sprites = pg.sprite.Group()
         self.walls = pg.sprite.Group()
 
-        for row, tiles in enumerate(self.map.data):
-            for col, tile in enumerate(tiles):
-                if tile == "1":
-                    Wall(self, col, row)
-                if tile == "P": # ตำแหน่งเกิดผู้เล่น
-                    self.player = Player(self, col, row)
-        
+        #for row, tiles in enumerate(self.map.data):
+        #    for col, tile in enumerate(tiles):
+        #        if tile == "1":
+        #            Wall(self, col, row)
+        #        if tile == "P": # ตำแหน่งเกิดผู้เล่น
+        #            self.player = Player(self, col, row)
+        self.player = Player(self, 5, 5)
         self.camera = Camera(self.map.width, self.map.height)
 # -----------------------------------------------------------------------------------------------
 

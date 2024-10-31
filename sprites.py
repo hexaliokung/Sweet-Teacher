@@ -59,10 +59,9 @@ class Player(pg.sprite.Sprite):
     def update(self):
         self.get_keys()
         self.pos += self.vel * self.game.dt
-        # อัปเดตตำแหน่งของผู้เล่นในกริดไปยังตำแหน่งจริงในพิกเซล
-        self.rect.x = self.pos.x
+        # อัปเดตตำแหน่งของผู้เล่นให้ `rect.center` ตรงกับ `self.pos`
+        self.rect.center = self.pos
         self.collide_with_walls("x")
-        self.rect.y = self.pos.y
         self.collide_with_walls("y")
 
 # ------------------------------------------------------------------------
