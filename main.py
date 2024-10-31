@@ -5,7 +5,6 @@ from os import path
 from sprites import *
 from settings import *
 from tilemap1 import *
-x = 1516135123135
 
 # ------------------------------------ สร้าง class Game ขึ้น ------------------------------------
 class Game:
