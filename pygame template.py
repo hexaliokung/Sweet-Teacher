@@ -30,10 +30,8 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-    # Update
     all_sprites.update()
 
-    # Draw / render
     screen.fill(BLACK)
     all_sprites.draw(screen)
     # *after* drawing everything, flip the display
