@@ -13,7 +13,7 @@ class Player(pg.sprite.Sprite):
         self.image.fill(YELLOW)
         self.rect = self.image.get_rect()  # สร้างสี่เหลี่ยมล้อมรอบพื้นผิว
         self.vel = vec(0, 0)
-        self.pos = vec(x, y) * TILESIZE
+        self.pos = vec(x, y) * 32
 
     def get_keys(self):
         self.vel = vec(0, 0)
@@ -89,3 +89,17 @@ class Wall(pg.sprite.Sprite):
         self.rect.x = x * TILESIZE
         self.rect.y = y * TILESIZE
 # ------------------------------------------------------------------------
+class Obstacle(pg.sprite.Sprite):
+    def __init__(self, game, x, y, w, h):
+
+        # กำหนดกลุ่มสไปร์ทที่กำแพงจะถูกเพิ่มเข้าไป (ทั้ง all_sprites และ walls)
+        self.groups = game.walls
+        pg.sprite.Sprite.__init__(self, self.groups)    # เพิ่มตัว Wall เข้ากลุ่มสไปร์ท
+        self.game = game    # เก็บข้อมูลอ้างอิงถึงอ็อบเจกต์เกมหลัก
+        self.rect = pg.Rect(x, y, w, h)   # สร้างสี่เหลี่ยมล้อมรอบพื้นผิวเพื่อใช้งานหลายอย่างเช่น การตรวจจับการชนของวัตถุ
+        self.x = x  # ตำแหน่ง X ของกำแพงในกริด
+        self.y = y  # ตำแหน่ง Y ของกำแพงในกริด
+
+        # อัปเดตตำแหน่งกำแพงในพิกเซลโดยคูณตำแหน่งในกริดด้วยขนาด TILESIZE
+        self.rect.x = x
+        self.rect.y = y

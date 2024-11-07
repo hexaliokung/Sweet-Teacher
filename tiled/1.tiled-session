@@ -1,0 +1,39 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "",
+    "expandedProjectPaths": [
+    ],
+    "fileStates": {
+        "C:/Project Grade C/img/tileset/TilesetField.tsx": {
+            "dynamicWrapping": false
+        },
+        "C:/Project Grade C/maps/level1.tmx": {
+            "scale": 0.33,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 1184.8484848484848,
+                "y": 815.1515151515151
+            }
+        }
+    },
+    "last.imagePath": "C:/Project Grade C/img/tileset",
+    "map.height": 30,
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 64,
+    "map.tileWidth": 64,
+    "map.width": 50,
+    "openFiles": [
+    ],
+    "project": "1.tiled-project",
+    "recentFiles": [
+        "C:/Project Grade C/maps/level1.tmx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 64,
+        "width": 64
+    }
+}

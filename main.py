@@ -109,6 +109,12 @@ class Game:
         #            Wall(self, col, row)
         #        if tile == "P": # ตำแหน่งเกิดผู้เล่น
         #            self.player = Player(self, col, row)
+        for tile_object in self.map.tmxdata.objects:
+            if tile_object.name == 'players':
+                self.player = Player(self, tile_object.x, tile_object.y)
+            if tile_object.name == 'wall':
+                Obstacle(self, tile_object.x, tile_object.y,
+                         tile_object.width, tile_object.height)
         self.player = Player(self, 5, 5)
         self.camera = Camera(self.map.width, self.map.height)
 # -----------------------------------------------------------------------------------------------
