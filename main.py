@@ -67,8 +67,9 @@ class Game:
 
     # method อัพเดทตำแหน่งของสไปร์ท
     def update(self):
-        self.all_sprites.update()
-        self.camera.update(self.player)
+        self.all_sprites.update()  # อัพเดททุกสไปร์ท
+        self.camera.update(self.player)  # อัพเดทกล้องตามตำแหน่งของ player
+        print(f"Player Position: {self.player.rect.topleft}, Camera Position: {self.camera.camera.topleft}")
 
     # method อีเวนท์ต่างๆ
     def events(self):
@@ -110,12 +111,11 @@ class Game:
         #        if tile == "P": # ตำแหน่งเกิดผู้เล่น
         #            self.player = Player(self, col, row)
         for tile_object in self.map.tmxdata.objects:
-            if tile_object.name == 'players':
+            if tile_object.name == 'player':
                 self.player = Player(self, tile_object.x, tile_object.y)
             if tile_object.name == 'wall':
                 Obstacle(self, tile_object.x, tile_object.y,
                          tile_object.width, tile_object.height)
-        self.player = Player(self, 5, 5)
         self.camera = Camera(self.map.width, self.map.height)
 # -----------------------------------------------------------------------------------------------
 

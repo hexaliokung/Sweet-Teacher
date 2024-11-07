@@ -3,19 +3,26 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "",
+    "activeFile": "C:/Project Grade C/maps/level1.tmx",
     "expandedProjectPaths": [
     ],
+    "file.lastUsedOpenFilter": "ไฟล์ทั้งหมด (*)",
     "fileStates": {
         "C:/Project Grade C/img/tileset/TilesetField.tsx": {
-            "dynamicWrapping": false
+            "dynamicWrapping": false,
+            "scaleInDock": 0.75,
+            "scaleInEditor": 1
+        },
+        "C:/Project Grade C/img/tileset/TilesetHouse.tsx": {
+            "scaleInDock": 0.33,
+            "scaleInEditor": 1
         },
         "C:/Project Grade C/maps/level1.tmx": {
-            "scale": 0.33,
-            "selectedLayer": 0,
+            "scale": 0.25,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 1184.8484848484848,
-                "y": 815.1515151515151
+                "x": 1634,
+                "y": 1340
             }
         }
     },
@@ -26,9 +33,14 @@
     "map.tileWidth": 64,
     "map.width": 50,
     "openFiles": [
+        "C:/Project Grade C/maps/level1.tmx",
+        "C:/Project Grade C/img/tileset/TilesetField.tsx",
+        "C:/Project Grade C/img/tileset/TilesetHouse.tsx"
     ],
     "project": "1.tiled-project",
     "recentFiles": [
+        "C:/Project Grade C/img/tileset/TilesetHouse.tsx",
+        "C:/Project Grade C/img/tileset/TilesetField.tsx",
         "C:/Project Grade C/maps/level1.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",

@@ -10,10 +10,10 @@ class Player(pg.sprite.Sprite):
         pg.sprite.Sprite.__init__(self, self.groups)  # เพิ่มตัว Player เข้ากลุ่มสไปร์ท
         self.game = game  # เก็บข้อมูลอ้างอิงถึงอ็อบเจกต์เกมหลัก
         self.image = pg.Surface((TILESIZE, TILESIZE))
-        self.image.fill(YELLOW)
+        self.image.fill(YELLOW)  # หรือสีอื่นๆ ตามที่คุณต้องการ
         self.rect = self.image.get_rect()  # สร้างสี่เหลี่ยมล้อมรอบพื้นผิว
         self.vel = vec(0, 0)
-        self.pos = vec(x, y) * 32
+        self.pos = vec(x , y)
 
     def get_keys(self):
         self.vel = vec(0, 0)
@@ -39,31 +39,32 @@ class Player(pg.sprite.Sprite):
         if dir == "x":
             hits = pg.sprite.spritecollide(self, self.game.walls, False)
             if hits:
-                if self.vel.x > 0:
+                if self.vel.x > 0:  # ถ้าเคลื่อนไปทางขวา
                     self.pos.x = hits[0].rect.left - self.rect.width
-                if self.vel.x <0:
+                elif self.vel.x < 0:  # ถ้าเคลื่อนไปทางซ้าย
                     self.pos.x = hits[0].rect.right
                 self.vel.x = 0
-                self.rect.x = self.pos.x
+                self.rect.x = self.pos.x  # อัปเดตตำแหน่ง rect ให้ตรงกับ pos
 
         if dir == "y":
             hits = pg.sprite.spritecollide(self, self.game.walls, False)
             if hits:
-                if self.vel.y > 0:
+                if self.vel.y > 0:  # ถ้าเคลื่อนไปด้านล่าง
                     self.pos.y = hits[0].rect.top - self.rect.height
-                if self.vel.y < 0:
+                elif self.vel.y < 0:  # ถ้าเคลื่อนไปด้านบน
                     self.pos.y = hits[0].rect.bottom
                 self.vel.y = 0
-                self.rect.y = self.pos.y
+                self.rect.y = self.pos.y  # อัปเดตตำแหน่ง rect ให้ตรงกับ pos
+
+
 
     def update(self):
         self.get_keys()
-        self.pos += self.vel * self.game.dt
-        # อัปเดตตำแหน่งของผู้เล่นให้ `rect.center` ตรงกับ `self.pos`
-        self.rect.center = self.pos
-        self.collide_with_walls("x")
-        self.collide_with_walls("y")
-
+        self.pos += self.vel * self.game.dt  # การเคลื่อนที่
+        self.rect.topleft = self.pos  # อัปเดตตำแหน่งของ `rect` ให้ตรงกับ `pos`
+        self.collide_with_walls("x")  # ตรวจสอบการชนในแนว x
+        self.collide_with_walls("y")  # ตรวจสอบการชนในแนว y
+        # self.rect.clamp_ip(self.game.scr_display.get_rect())
 # ------------------------------------------------------------------------
 
 # ------------------------------ Wall Class ------------------------------
@@ -72,16 +73,11 @@ class Wall(pg.sprite.Sprite):
 
         # กำหนดกลุ่มสไปร์ทที่กำแพงจะถูกเพิ่มเข้าไป (ทั้ง all_sprites และ walls)
         self.groups = game.all_sprites, game.walls
-
         pg.sprite.Sprite.__init__(self, self.groups)    # เพิ่มตัว Wall เข้ากลุ่มสไปร์ท
-
         self.game = game    # เก็บข้อมูลอ้างอิงถึงอ็อบเจกต์เกมหลัก
-
         self.image = pg.Surface((TILESIZE, TILESIZE))   # สร้างพื้นผิวสี่เหลี่ยมขนาด 32 * 32 สำหรับกำแพง
         self.image.fill(GREEN)                          # และเติมสีเขียวให้กับพื้นผิวของกำแพง
-
         self.rect = self.image.get_rect()   # สร้างสี่เหลี่ยมล้อมรอบพื้นผิวเพื่อใช้งานหลายอย่างเช่น การตรวจจับการชนของวัตถุ
-
         self.x = x  # ตำแหน่ง X ของกำแพงในกริด
         self.y = y  # ตำแหน่ง Y ของกำแพงในกริด
 
@@ -100,6 +96,5 @@ class Obstacle(pg.sprite.Sprite):
         self.x = x  # ตำแหน่ง X ของกำแพงในกริด
         self.y = y  # ตำแหน่ง Y ของกำแพงในกริด
 
-        # อัปเดตตำแหน่งกำแพงในพิกเซลโดยคูณตำแหน่งในกริดด้วยขนาด TILESIZE
         self.rect.x = x
         self.rect.y = y
