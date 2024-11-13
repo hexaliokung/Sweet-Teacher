@@ -18,11 +18,11 @@
             "scaleInEditor": 1
         },
         "C:/Project Grade C/maps/level1.tmx": {
-            "scale": 0.25,
+            "scale": 3,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 1634,
-                "y": 1340
+                "x": 103.5,
+                "y": 89.33333333333334
             }
         }
     },
